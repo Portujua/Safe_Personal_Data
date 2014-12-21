@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Safe Personal Data.exe" size="131584">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Safe Personal Data.exe" size="131072">
       <assemblyIdentity name="Safe Personal Data" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ITQvKDc50xJ8QZYHwGGEOPh7qU3JXRPidLv0kHwV2Yk=</dsig:DigestValue>
+        <dsig:DigestValue>67fQlT/kpwp31vQKK4cGqbgAxRYzz+lp0CVZEiRvalU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

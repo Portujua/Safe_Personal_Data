@@ -17,6 +17,8 @@ namespace Safe_Personal_Data
 {
     public partial class Form1 : Form
     {
+        private const string CURRENT_VERSION = " 2.0";
+
         private Changelog changelog = new Changelog();
 
         private string PASSWORD = "Dellons";
@@ -43,6 +45,8 @@ namespace Safe_Personal_Data
         
         private string itemSeleccionado;
         private int idCopiadoInteligente;
+
+        private int claveOffset = 1;
 
         private ConnectionHandler ch = new ConnectionHandler();
 
@@ -99,7 +103,6 @@ namespace Safe_Personal_Data
                 timerActivarSubirBajar.Stop();
 
                 ListView nuevaListViewCuentas = new ListView();
-                ListView nuevaListViewClaves = new ListView();
 
                 // Para seguir despues de haber encontrado a subir
                 int seguirDesde = 0;
@@ -108,14 +111,12 @@ namespace Safe_Personal_Data
                 {
                     if (i + 1 < listaCuentas.Items.Count)
                     {
-                        if (listaCuentas.Items[i + 1].Text == itemSeleccionado || listaClaves.Items[i + 1].Text == itemSeleccionado)
+                        if (listaCuentas.Items[i + 1].Text == itemSeleccionado)
                         {
                             // Añadimos el que vamos a subir
-                            nuevaListViewCuentas.Items.Add((ListViewItem)listaCuentas.Items[i + 1].Clone());
-                            nuevaListViewClaves.Items.Add((ListViewItem)listaClaves.Items[i + 1].Clone());
+                            nuevaListViewCuentas.Items.Add((ListViewItem)listaCuentas.Items[i + 1].Clone());                            
                             // Añadimos el que estaba antes (arriba)
                             nuevaListViewCuentas.Items.Add((ListViewItem)listaCuentas.Items[i].Clone());
-                            nuevaListViewClaves.Items.Add((ListViewItem)listaClaves.Items[i].Clone());
                             // Salimos y dejamos donde debemos seguir
                             seguirDesde = i + 2;
                             break;
@@ -123,7 +124,6 @@ namespace Safe_Personal_Data
                         else
                         {
                             nuevaListViewCuentas.Items.Add((ListViewItem)listaCuentas.Items[i].Clone());
-                            nuevaListViewClaves.Items.Add((ListViewItem)listaClaves.Items[i].Clone());
                         }
                     }
                 }
@@ -132,18 +132,15 @@ namespace Safe_Personal_Data
                 for (int i = seguirDesde; i < listaCuentas.Items.Count; i++)
                 {
                     nuevaListViewCuentas.Items.Add((ListViewItem)listaCuentas.Items[i].Clone());
-                    nuevaListViewClaves.Items.Add((ListViewItem)listaClaves.Items[i].Clone());
                 }
 
                 // Vaciamos las lista actuales
                 listaCuentas.Items.Clear();
-                listaClaves.Items.Clear();
 
                 // Copiamos todo lo de las nuevas ListView
                 for (int i = 0; i < nuevaListViewCuentas.Items.Count; i++)
                 {
                     listaCuentas.Items.Add((ListViewItem)nuevaListViewCuentas.Items[i].Clone());
-                    listaClaves.Items.Add((ListViewItem)nuevaListViewClaves.Items[i].Clone());
                 }
 
                 // Reactivamos el timer
@@ -168,14 +165,12 @@ namespace Safe_Personal_Data
                 {
                     if (i + 1 < listaCuentas.Items.Count)
                     {
-                        if (listaCuentas.Items[i].Text == itemSeleccionado || listaClaves.Items[i].Text == itemSeleccionado)
+                        if (listaCuentas.Items[i].Text == itemSeleccionado)
                         {
                             // Añadimos el que vamos a subir
                             nuevaListViewCuentas.Items.Add((ListViewItem)listaCuentas.Items[i + 1].Clone());
-                            nuevaListViewClaves.Items.Add((ListViewItem)listaClaves.Items[i + 1].Clone());
                             // Añadimos el que estaba antes (arriba)
                             nuevaListViewCuentas.Items.Add((ListViewItem)listaCuentas.Items[i].Clone());
-                            nuevaListViewClaves.Items.Add((ListViewItem)listaClaves.Items[i].Clone());
                             // Salimos y dejamos donde debemos seguir
                             seguirDesde = i + 2;
                             break;
@@ -183,7 +178,6 @@ namespace Safe_Personal_Data
                         else
                         {
                             nuevaListViewCuentas.Items.Add((ListViewItem)listaCuentas.Items[i].Clone());
-                            nuevaListViewClaves.Items.Add((ListViewItem)listaClaves.Items[i].Clone());
                         }
                     }
                 }
@@ -192,18 +186,15 @@ namespace Safe_Personal_Data
                 for (int i = seguirDesde; i < listaCuentas.Items.Count; i++)
                 {
                     nuevaListViewCuentas.Items.Add((ListViewItem)listaCuentas.Items[i].Clone());
-                    nuevaListViewClaves.Items.Add((ListViewItem)listaClaves.Items[i].Clone());
                 }
 
                 // Vaciamos las lista actuales
                 listaCuentas.Items.Clear();
-                listaClaves.Items.Clear();
 
                 // Copiamos todo lo de las nuevas ListView
                 for (int i = 0; i < nuevaListViewCuentas.Items.Count; i++)
                 {
                     listaCuentas.Items.Add((ListViewItem)nuevaListViewCuentas.Items[i].Clone());
-                    listaClaves.Items.Add((ListViewItem)nuevaListViewClaves.Items[i].Clone());
                 }
 
                 // Reactivamos el timer
@@ -226,25 +217,22 @@ namespace Safe_Personal_Data
 
                 for (int i = 0; i < listaCuentas.Items.Count; i++)
                 {
-                    if (listaCuentas.Items[i].Text == itemSeleccionado || listaClaves.Items[i].Text == itemSeleccionado)
+                    if (listaCuentas.Items[i].Text == itemSeleccionado)
                         continue;
                     else
                     {
                         nuevaListViewCuentas.Items.Add((ListViewItem)listaCuentas.Items[i].Clone());
-                        nuevaListViewClaves.Items.Add((ListViewItem)listaClaves.Items[i].Clone());
                     }
 
                 }
 
                 // Vaciamos las lista actuales
                 listaCuentas.Items.Clear();
-                listaClaves.Items.Clear();
 
                 // Copiamos todo lo de las nuevas ListView
                 for (int i = 0; i < nuevaListViewCuentas.Items.Count; i++)
                 {
                     listaCuentas.Items.Add((ListViewItem)nuevaListViewCuentas.Items[i].Clone());
-                    listaClaves.Items.Add((ListViewItem)nuevaListViewClaves.Items[i].Clone());
                 }
 
                 // Reactivamos el timer
@@ -269,29 +257,6 @@ namespace Safe_Personal_Data
         private void cerrarApp(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void copyToClipboard()
-        {
-            if (ctrlC)
-            {
-                try
-                {
-                    string cta = "null";
-                    string pass = "null";
-                    if (listaCuentas.Focused)
-                        cta = listaCuentas.FocusedItem.Text;
-                    if (listaClaves.Focused)
-                        pass = listaClaves.FocusedItem.Text;
-
-                    if (cta != "null")                    
-                        Clipboard.SetText(cta);
-                    if (pass != "null")                    
-                        Clipboard.SetText(pass);                        
-                    
-                }
-                catch (Exception e) { }
-            }
         }
 
         private void smartCopy()
@@ -319,7 +284,7 @@ namespace Safe_Personal_Data
             {
                 if (i > 0)
                     archivo += "\n";
-                archivo += listaCuentas.Items[i].Text + "\n" + listaClaves.Items[i].Text;
+                archivo += listaCuentas.Items[i].Text + "\n" + listaCuentas.Items[i].SubItems[claveOffset].Text;
             }
 
             string enc = Encriptador.Encrypt(archivo, PASSWORD);
@@ -336,6 +301,7 @@ namespace Safe_Personal_Data
                 string desencriptado = Encriptador.Decrypt(lineas.ElementAt(0), PASSWORD);
                 string actual = "";
                 int k = 0;
+                ListViewItem cuenta = null;
 
                 for (int i = 0; i < desencriptado.Length; i++)
                 {
@@ -343,13 +309,12 @@ namespace Safe_Personal_Data
                     {
                         if (k % 2 == 0)
                         {
-                            ListViewItem cuenta = new ListViewItem(actual);
-                            listaCuentas.Items.Add(cuenta);
+                            cuenta = new ListViewItem(actual);
                         }
                         else
                         {
-                            ListViewItem clave = new ListViewItem(actual);
-                            listaClaves.Items.Add(clave);
+                            cuenta.SubItems.Add(actual);
+                            listaCuentas.Items.Add(cuenta);
                         }
                         k++;
                         actual = "";
@@ -360,8 +325,8 @@ namespace Safe_Personal_Data
                     /* Chequeo ultima palabra */
                     if (i + 1 == desencriptado.Length)
                     {
-                        ListViewItem clave = new ListViewItem(actual);
-                        listaClaves.Items.Add(clave);
+                        cuenta.SubItems.Add(actual);
+                        listaCuentas.Items.Add(cuenta);
                     }
                 }
             }
@@ -376,6 +341,7 @@ namespace Safe_Personal_Data
         public Form1()
         {
             InitializeComponent();
+            this.Text += CURRENT_VERSION;
             //MessageBox.Show(Encriptador.Encrypt("8332270894sf", "sf"));
             //System.IO.File.WriteAllText(@"Clave Sf", Encriptador.Encrypt("8332270894sf", "sf"));
             PASSWORD = secretWord.Text;
@@ -387,24 +353,22 @@ namespace Safe_Personal_Data
         private void Form1_Load(object sender, EventArgs e)
         {
             iniciarTrayMenu();
-            ch.setIp("www.tibia.com");            
+            ch.setIp("www.tibia.com");
         }
 
         private void cuentaClaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Creamos el nuevo elemento
             ListViewItem cuenta = new ListViewItem("Nueva Cuenta");
-            ListViewItem clave = new ListViewItem("Nueva Clave");
-            
+            cuenta.SubItems.Add("Nueva Clave");            
 
             listaCuentas.Items.Add(cuenta);
-            listaClaves.Items.Add(clave);
         }
 
-        #region Funciones de CTRL C y Doble Click
+        #region Funcion Copiado Inteligente
 
         private void listaCuentas_KeyDown(object sender, KeyEventArgs e)
-        {
+        {            
             /* Copiar al portapapeles con Ctrl+C */
             ctrlC = (e.Modifiers == Keys.Control && e.KeyCode == Keys.C);
 
@@ -430,31 +394,6 @@ namespace Safe_Personal_Data
             }
         }
 
-        private void listaCuentas_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            copyToClipboard();            
-        }
-
-        private void listaClaves_KeyDown(object sender, KeyEventArgs e)
-        {
-            ctrlC = (e.Modifiers == Keys.Control && e.KeyCode == Keys.C);
-        }
-
-        private void listaClaves_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            copyToClipboard();
-        }
-
-        private void listaCuentas_DoubleClick(object sender, EventArgs e)
-        {
-            listaCuentas.FocusedItem.BeginEdit();
-        }
-
-        private void listaClaves_DoubleClick(object sender, EventArgs e)
-        {
-            listaClaves.FocusedItem.BeginEdit();
-        }
-
         #endregion
 
         private void cargarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -475,8 +414,6 @@ namespace Safe_Personal_Data
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (!this.Visible) return;
-
-            listaClaves.AutoScrollOffset = new Point(listaClaves.AutoScrollOffset.X, listaCuentas.AutoScrollOffset.Y);
             
             if (!timerEsperarCopiado.Enabled)
                 if (/* Estado de CTRL */
@@ -490,8 +427,8 @@ namespace Safe_Personal_Data
 
                     /* Aqui ya pego la primera vez, debemos copiar la clave */
                     if (etapaPegadoInteligente == WAITING_FIRST_PASTE)
-                    {   
-                        Clipboard.SetText(listaClaves.Items[idCopiadoInteligente].Text);
+                    {
+                        Clipboard.SetText(listaCuentas.Items[idCopiadoInteligente].SubItems[claveOffset].Text);
                         etapaPegadoInteligente = WAITING_SECOND_PASTE;
                         timerEsperarCopiado.Start();
                     }
@@ -506,11 +443,8 @@ namespace Safe_Personal_Data
             try
             {
                 string cta = "null";
-                string pass = "null";
                 if (listaCuentas.Focused)
                     cta = listaCuentas.FocusedItem.Text;
-                if (listaClaves.Focused)
-                    pass = listaClaves.FocusedItem.Text;
 
                 if (cta != "null")
                 {
@@ -527,22 +461,6 @@ namespace Safe_Personal_Data
 
                     activoAlguno = true;
                     itemSeleccionado = listaCuentas.FocusedItem.Text;
-                }
-                if (pass != "null")
-                {
-                    if (listaClaves.FocusedItem.Index > 0)
-                        subirToolStripMenuItem.Visible = true;
-                    else
-                        subirToolStripMenuItem.Visible = false;
-
-                    if (listaClaves.FocusedItem.Index < listaClaves.Items.Count - 1)
-                        bajarToolStripMenuItem.Visible = true;
-                    else
-                        bajarToolStripMenuItem.Visible = false;
-
-
-                    activoAlguno = true;
-                    itemSeleccionado = listaClaves.FocusedItem.Text;
                 }
             }
             catch (Exception er) { }
@@ -561,14 +479,12 @@ namespace Safe_Personal_Data
             int constHorizForm = 450;
 
             listaCuentas.Size = new Size(listaCuentas.Size.Width, this.Size.Height - resize);
-            listaClaves.Size = new Size(listaClaves.Size.Width, this.Size.Height - resize);
             this.Size = new Size(constHorizForm, this.Size.Height);
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             listaCuentas.Items.Clear();
-            listaClaves.Items.Clear();
         }
 
         private void subirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -584,28 +500,22 @@ namespace Safe_Personal_Data
         private void separadorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Separador
-            ListViewItem cuenta = new ListViewItem("████████████████████████");
-            ListViewItem clave = new ListViewItem("████████████████████████");
-
+            ListViewItem cuenta = new ListViewItem("████████████████████████████");
+            cuenta.SubItems.Add("██████████████████████████");
 
             listaCuentas.Items.Add(cuenta);
-            listaClaves.Items.Add(clave);
 
             // Texto
             ListViewItem cuenta2 = new ListViewItem("Nombre Separador");
-            ListViewItem clave2 = new ListViewItem("Nombre Separador");
-
+            cuenta2.SubItems.Add("Nombre Separador");
 
             listaCuentas.Items.Add(cuenta2);
-            listaClaves.Items.Add(clave2);
 
             // Separador
-            ListViewItem cuenta3 = new ListViewItem("████████████████████████");
-            ListViewItem clave3 = new ListViewItem("████████████████████████");
-
+            ListViewItem cuenta3 = new ListViewItem("████████████████████████████");
+            cuenta3.SubItems.Add("██████████████████████████");
 
             listaCuentas.Items.Add(cuenta3);
-            listaClaves.Items.Add(clave3);
         }
 
         private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -745,6 +655,35 @@ namespace Safe_Personal_Data
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void listaCuentas_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (listaCuentas.FocusedItem.Bounds.Contains(e.Location) == true)
+                {
+                    contextMenuStrip1.Show(Cursor.Position);
+                }
+            } 
+        }
+
+        private void copiarCuentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Clipboard.SetText(listaCuentas.FocusedItem.Text);
+            }
+            catch (Exception ex) { }
+        }
+
+        private void copiarClaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Clipboard.SetText(listaCuentas.FocusedItem.SubItems[claveOffset].Text);
+            }
+            catch (Exception ex) { }
         }
     }
 }

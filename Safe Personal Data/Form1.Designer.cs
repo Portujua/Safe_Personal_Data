@@ -46,16 +46,14 @@
             this.secretWord = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cuentaClaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separadorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bajarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileLoader = new System.Windows.Forms.OpenFileDialog();
-            this.listaCuentas = new System.Windows.Forms.ListView();
-            this.column_cuenta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listaClaves = new System.Windows.Forms.ListView();
-            this.column_clave = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timerActivarSubirBajar = new System.Windows.Forms.Timer(this.components);
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.timerEsperarCopiado = new System.Windows.Forms.Timer(this.components);
@@ -64,9 +62,14 @@
             this.checkbox_usarAlarma = new System.Windows.Forms.CheckBox();
             this.checkbox_usarPing = new System.Windows.Forms.CheckBox();
             this.pingThread = new System.ComponentModel.BackgroundWorker();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.column_cuenta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listaCuentas = new System.Windows.Forms.ListView();
+            this.column_clave = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copiarCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copiarClaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -130,7 +133,7 @@
             // nombreArchivoCargar
             // 
             this.nombreArchivoCargar.Name = "nombreArchivoCargar";
-            this.nombreArchivoCargar.Size = new System.Drawing.Size(100, 23);
+            this.nombreArchivoCargar.Size = new System.Drawing.Size(100, 21);
             this.nombreArchivoCargar.Text = "pw";
             // 
             // toolStripSeparator1
@@ -148,7 +151,7 @@
             // nombreArchivoGuardar
             // 
             this.nombreArchivoGuardar.Name = "nombreArchivoGuardar";
-            this.nombreArchivoGuardar.Size = new System.Drawing.Size(100, 23);
+            this.nombreArchivoGuardar.Size = new System.Drawing.Size(100, 21);
             this.nombreArchivoGuardar.Text = "pw";
             // 
             // toolStripSeparator3
@@ -178,7 +181,7 @@
             // secretWord
             // 
             this.secretWord.Name = "secretWord";
-            this.secretWord.Size = new System.Drawing.Size(100, 23);
+            this.secretWord.Size = new System.Drawing.Size(100, 21);
             this.secretWord.Text = "osszoi";
             this.secretWord.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
             // 
@@ -193,6 +196,18 @@
             this.toolStripMenuItem3.Size = new System.Drawing.Size(165, 22);
             this.toolStripMenuItem3.Text = "Changelog";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(162, 6);
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // nuevoToolStripMenuItem
             // 
@@ -234,52 +249,6 @@
             // fileLoader
             // 
             this.fileLoader.FileName = "fileLoader";
-            // 
-            // listaCuentas
-            // 
-            this.listaCuentas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.column_cuenta});
-            this.listaCuentas.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listaCuentas.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listaCuentas.LabelEdit = true;
-            this.listaCuentas.Location = new System.Drawing.Point(14, 52);
-            this.listaCuentas.MultiSelect = false;
-            this.listaCuentas.Name = "listaCuentas";
-            this.listaCuentas.Size = new System.Drawing.Size(204, 352);
-            this.listaCuentas.TabIndex = 1;
-            this.listaCuentas.UseCompatibleStateImageBehavior = false;
-            this.listaCuentas.View = System.Windows.Forms.View.Details;
-            this.listaCuentas.DoubleClick += new System.EventHandler(this.listaCuentas_DoubleClick);
-            this.listaCuentas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listaCuentas_KeyDown);
-            this.listaCuentas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.listaCuentas_KeyPress);
-            // 
-            // column_cuenta
-            // 
-            this.column_cuenta.Text = "Cuenta";
-            this.column_cuenta.Width = 180;
-            // 
-            // listaClaves
-            // 
-            this.listaClaves.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.column_clave});
-            this.listaClaves.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listaClaves.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listaClaves.LabelEdit = true;
-            this.listaClaves.Location = new System.Drawing.Point(224, 52);
-            this.listaClaves.MultiSelect = false;
-            this.listaClaves.Name = "listaClaves";
-            this.listaClaves.Size = new System.Drawing.Size(206, 352);
-            this.listaClaves.TabIndex = 2;
-            this.listaClaves.UseCompatibleStateImageBehavior = false;
-            this.listaClaves.View = System.Windows.Forms.View.Details;
-            this.listaClaves.DoubleClick += new System.EventHandler(this.listaClaves_DoubleClick);
-            this.listaClaves.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listaClaves_KeyDown);
-            this.listaClaves.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.listaClaves_KeyPress);
-            // 
-            // column_clave
-            // 
-            this.column_clave.Text = "Clave";
-            this.column_clave.Width = 181;
             // 
             // timerActivarSubirBajar
             // 
@@ -339,17 +308,57 @@
             // 
             this.pingThread.DoWork += new System.ComponentModel.DoWorkEventHandler(this.pingThread_DoWork);
             // 
-            // toolStripSeparator5
+            // column_cuenta
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(162, 6);
+            this.column_cuenta.Text = "Cuenta";
+            this.column_cuenta.Width = 204;
             // 
-            // salirToolStripMenuItem
+            // listaCuentas
             // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.salirToolStripMenuItem.Text = "Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            this.listaCuentas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listaCuentas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.column_cuenta,
+            this.column_clave});
+            this.listaCuentas.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listaCuentas.FullRowSelect = true;
+            this.listaCuentas.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listaCuentas.LabelEdit = true;
+            this.listaCuentas.Location = new System.Drawing.Point(14, 52);
+            this.listaCuentas.MultiSelect = false;
+            this.listaCuentas.Name = "listaCuentas";
+            this.listaCuentas.Size = new System.Drawing.Size(416, 352);
+            this.listaCuentas.TabIndex = 1;
+            this.listaCuentas.UseCompatibleStateImageBehavior = false;
+            this.listaCuentas.View = System.Windows.Forms.View.Details;
+            this.listaCuentas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listaCuentas_KeyDown);
+            this.listaCuentas.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listaCuentas_MouseClick);
+            // 
+            // column_clave
+            // 
+            this.column_clave.Text = "Clave";
+            this.column_clave.Width = 196;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copiarCuentaToolStripMenuItem,
+            this.copiarClaveToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(144, 48);
+            // 
+            // copiarCuentaToolStripMenuItem
+            // 
+            this.copiarCuentaToolStripMenuItem.Name = "copiarCuentaToolStripMenuItem";
+            this.copiarCuentaToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.copiarCuentaToolStripMenuItem.Text = "Copiar Cuenta";
+            this.copiarCuentaToolStripMenuItem.Click += new System.EventHandler(this.copiarCuentaToolStripMenuItem_Click);
+            // 
+            // copiarClaveToolStripMenuItem
+            // 
+            this.copiarClaveToolStripMenuItem.Name = "copiarClaveToolStripMenuItem";
+            this.copiarClaveToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.copiarClaveToolStripMenuItem.Text = "Copiar Clave";
+            this.copiarClaveToolStripMenuItem.Click += new System.EventHandler(this.copiarClaveToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -359,7 +368,6 @@
             this.Controls.Add(this.checkbox_usarPing);
             this.Controls.Add(this.checkbox_usarAlarma);
             this.Controls.Add(this.label_connectionInfo);
-            this.Controls.Add(this.listaClaves);
             this.Controls.Add(this.listaCuentas);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -367,12 +375,13 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Safe Personal Accounts 1.7";
+            this.Text = "Safe Personal Accounts";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -386,10 +395,6 @@
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cuentaClaveToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog fileLoader;
-        private System.Windows.Forms.ListView listaCuentas;
-        private System.Windows.Forms.ColumnHeader column_cuenta;
-        private System.Windows.Forms.ListView listaClaves;
-        private System.Windows.Forms.ColumnHeader column_clave;
         private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
         private System.Windows.Forms.Timer timerActivarSubirBajar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -416,6 +421,12 @@
         private System.ComponentModel.BackgroundWorker pingThread;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader column_cuenta;
+        private System.Windows.Forms.ListView listaCuentas;
+        private System.Windows.Forms.ColumnHeader column_clave;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem copiarCuentaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copiarClaveToolStripMenuItem;
     }
 }
 

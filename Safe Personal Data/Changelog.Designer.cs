@@ -79,6 +79,9 @@
             System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Las estadisticas de ping se reinician al desactivarlo");
             System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("1.7.1", new System.Windows.Forms.TreeNode[] {
             treeNode29});
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Rediseñada la interfaz de cuentas");
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("2.0", new System.Windows.Forms.TreeNode[] {
+            treeNode31});
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.label_pingExplicacion = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -150,6 +153,10 @@
             treeNode29.Text = "Las estadisticas de ping se reinician al desactivarlo";
             treeNode30.Name = "Node0";
             treeNode30.Text = "1.7.1";
+            treeNode31.Name = "Node1";
+            treeNode31.Text = "Rediseñada la interfaz de cuentas";
+            treeNode32.Name = "Node0";
+            treeNode32.Text = "2.0";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode3,
             treeNode6,
@@ -159,7 +166,8 @@
             treeNode20,
             treeNode22,
             treeNode28,
-            treeNode30});
+            treeNode30,
+            treeNode32});
             this.treeView1.Size = new System.Drawing.Size(538, 484);
             this.treeView1.TabIndex = 0;
             // 
